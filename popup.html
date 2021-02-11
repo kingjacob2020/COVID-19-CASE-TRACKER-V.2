@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COVID-19 Case Tracker</title>
+    <meta name="viewport" content="width=device-width, Initial-scale=1">
+</head>
+<style>
+body {
+  background-image: url('https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png');
+
+  /* Center and scale the image nicely */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body{
+  font-size: 80%;
+}
+
+h1{
+font-size: 2.5em;
+}
+</style>
+<body>
+    <h1>COVID19</h1>
+    <h2>Case counter</h2>
+</body>
+<body>
+    <p id = "totalCases">Total Cases: </p>
+    <p id = "totalDeaths">Total Deaths: </p>
+    <p id = "todayCases">Today Cases: </p>
+    <p id = "todayDeaths">Today Deaths: </p>
+</body>
+<script>
+var country = window.prompt("Enter country");
+fetch('https://disease.sh/v3/covid-19/countries/' + country)
+    .then(response => {
+        return response.json()
+    })
+    .then(data => {
+        console.log(data);
+        document.getElementById('totalDeaths').textContent += data.deaths
+        document.getElementById('totalCases').textContent += data.cases
+        document.getElementById('todayDeaths').textContent += data.todayDeaths
+        document.getElementById('todayCases').textContent += data.todayCases
+    })
+</script>
+</html>
